@@ -8,11 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ParagraphParserChain extends AbstractParserChain{
-    private static final String PARAGRAPH_SPLITTER_REGEX = "(^|\\n)(\\t|\\s{4})";
+    private static final String PARAGRAPH_REGEX = "(^|\\n)(\\t|\\s{4})";
 
     @Override
     public void parse(TextComponent component, String data) {
-        Pattern pattern = Pattern.compile(PARAGRAPH_SPLITTER_REGEX);
+        Pattern pattern = Pattern.compile(PARAGRAPH_REGEX);
         Matcher matcher = pattern.matcher(data);
 
         while (matcher.find()) {

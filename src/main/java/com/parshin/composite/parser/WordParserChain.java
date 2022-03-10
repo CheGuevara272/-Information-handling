@@ -9,18 +9,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WordParserChain extends AbstractParserChain{
-    private static final String WORD_AND_PUNCTUATION_REGEXP = "[\\wа-яА-ЯёЁ']+|[\\p{Punct}\\u2026]";
-    private static final String WORD_REGEXP = "[\\wа-яА-ЯёЁ']+";
+    private static final String WORD_AND_PUNCTUATION_REGEX = "[\\wа-яА-ЯёЁ']+|[\\p{Punct}\\u2026]";
+    private static final String WORD_REGEX = "[\\wа-яА-ЯёЁ']+";
     private static final String PUNCTUATION_REGEXP = "[\\p{Punct}|\\u2026]";
 
     @Override
     public void parse(TextComponent component, String data) {
-        Pattern pattern = Pattern.compile(WORD_AND_PUNCTUATION_REGEXP);
+        Pattern pattern = Pattern.compile(WORD_AND_PUNCTUATION_REGEX);
         Matcher matcher = pattern.matcher(data);
 
         while (matcher.find()) {
             String wordOrPunctuation = matcher.group();
-            if (wordOrPunctuation.matches(WORD_REGEXP)) {
+            if (wordOrPunctuation.matches(WORD_REGEX)) {
                 TextComponent wordComponent = new TextComposite(TextComponentType.WORD);
                 component.add(wordComponent);
 
