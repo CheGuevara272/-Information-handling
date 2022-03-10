@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class WordParserChain extends AbstractParserChain{
     private static final String WORD_AND_PUNCTUATION_REGEX = "[\\wа-яА-ЯёЁ']+|[\\p{Punct}\\u2026]";
     private static final String WORD_REGEX = "[\\wа-яА-ЯёЁ']+";
-    private static final String PUNCTUATION_REGEXP = "[\\p{Punct}|\\u2026]";
+    private static final String PUNCTUATION_REGEX = "[\\p{Punct}|\\u2026]";
 
     @Override
     public void parse(TextComponent component, String data) {
@@ -26,7 +26,7 @@ public class WordParserChain extends AbstractParserChain{
 
                 nextChain = new LetterParserChain();
                 nextChain.parse(wordComponent, wordOrPunctuation);
-            } else if (wordOrPunctuation.matches(PUNCTUATION_REGEXP)) {
+            } else if (wordOrPunctuation.matches(PUNCTUATION_REGEX)) {
                 TextLeaf punctuationLeaf = new TextLeaf(wordOrPunctuation.charAt(0), TextComponentType.PUNCTUATION_MARK);
                 component.add(punctuationLeaf);
             }

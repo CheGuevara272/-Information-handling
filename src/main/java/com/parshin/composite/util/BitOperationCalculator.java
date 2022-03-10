@@ -93,7 +93,7 @@ public class BitOperationCalculator {
         return stack.pop();
     }
 
-    private int getOperatorPriority(String token) {
+    private int getOperatorPriority(String token) { //priority table https://javarush.ru/groups/posts/1925-pobitovihe-operacii
         return switch (token) {
             case ("|") -> 2;
             case ("^") -> 3;
