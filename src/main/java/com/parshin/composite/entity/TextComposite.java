@@ -17,7 +17,7 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
-    public List<TextComponent> getChild() {
+    public List<TextComponent> getChildren() {
         return new ArrayList<>(components);
     }
 
@@ -35,7 +35,7 @@ public class TextComposite implements TextComponent {
     public String toString() {
         StringBuilder component = new StringBuilder();
         component.append(type.getPrefix());
-        for (TextComponent part : components) {
+        for (var part : components) {
             component.append(part.toString());
         }
         component.append(type.getPostfix());

@@ -5,6 +5,7 @@ import com.parshin.composite.entity.TextComponentType;
 import com.parshin.composite.entity.TextComposite;
 import com.parshin.composite.util.BitOperationCalculator;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,13 +13,15 @@ public class LexemeParserChain extends AbstractParserChain{
     private static final String LEXEME_REGEX = "\\s";
     private static final String BIT_OPERATION_REGEX = "([\\d+\\&\\|\\^\\(\\~<+\\>+\\)]){2,}";
 
+    public LexemeParserChain() {
+        nextChain = new WordParserChain();
+    }
+
     @Override
     public void parse(TextComponent component, String data) {
-        Pattern pattern = Pattern.compile(LEXEME_REGEX);
-        Matcher matcher = pattern.matcher(data);
+        List<String> lexemeList = List.of(data.split(LEXEME_REGEX));
 
-        while (matcher.find()) {
-            String lexeme = matcher.group();
+        for (var lexeme : lexemeList) {
             if (lexeme.matches(BIT_OPERATION_REGEX)) {
                 BitOperationCalculator bitCalc = BitOperationCalculator.getInstance();
                 String calculatedBitOperation;
@@ -28,7 +31,6 @@ public class LexemeParserChain extends AbstractParserChain{
             TextComponent lexemeComponent = new TextComposite(TextComponentType.LEXEME);
             component.add(lexemeComponent);
 
-            nextChain = new LetterParserChain();
             nextChain.parse(lexemeComponent, lexeme);
         }
     }

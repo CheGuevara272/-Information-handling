@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface TextComponent {
     TextComponentType getType();
-    List<TextComponent> getChild();
+    List<TextComponent> getChildren();
 
     boolean add(TextComponent component);
     boolean remove(TextComponent component);

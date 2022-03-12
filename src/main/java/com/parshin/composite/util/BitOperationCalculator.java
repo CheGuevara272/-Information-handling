@@ -1,6 +1,9 @@
 package com.parshin.composite.util;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 public class BitOperationCalculator {
     private static final BitOperationCalculator instance = new BitOperationCalculator();

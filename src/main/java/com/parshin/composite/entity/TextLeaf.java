@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 public class TextLeaf implements TextComponent{
     private static final Logger log = LogManager.getLogger();
@@ -22,7 +23,7 @@ public class TextLeaf implements TextComponent{
     }
 
     @Override
-    public List<TextComponent> getChild() {
+    public List<TextComponent> getChildren() {
         log.log(Level.ERROR, "This method is not supported");
         throw new UnsupportedOperationException("This method is not supported");
     }

@@ -8,7 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SentenceParserChain extends AbstractParserChain{
-    private static final String SENTENCE_REGEX = "([A-Z]|[А-ЯЁ]).+?(\\.|\\!|\\?|\\u2026)";
+    private static final String SENTENCE_REGEX = "(?Us).*?(?:[?!.](\\s+|$))";
+
+    public SentenceParserChain() {
+        nextChain = new LexemeParserChain();
+    }
 
     @Override
     public void parse(TextComponent component, String data) {
@@ -20,7 +24,6 @@ public class SentenceParserChain extends AbstractParserChain{
             TextComponent sentenceComponent = new TextComposite(TextComponentType.SENTENCE);
             component.add(sentenceComponent);
 
-            nextChain = new LexemeParserChain();
             nextChain.parse(sentenceComponent, sentence);
         }
     }

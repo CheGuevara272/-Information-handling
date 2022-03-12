@@ -1,6 +1,5 @@
 package com.parshin.composite.reader.impl;
 
-import com.parshin.composite.exception.CustomException;
 import com.parshin.composite.reader.CustomReader;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -21,13 +20,13 @@ public class CustomFileReader implements CustomReader {
     }
 
     @Override
-    public String readFile(String fileName) throws CustomException {
+    public String readFile(String fileName) {
         File file = new File(fileName);
         try {
             return Files.readString(file.toPath());
         } catch (IOException e) {
             log.log(Level.ERROR, "file wasn't read", e);
-            throw new CustomException("file wasn't read", e);
+            return fileName;
         }
     }
 }

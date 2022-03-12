@@ -4,23 +4,28 @@ import com.parshin.composite.entity.TextComponent;
 import com.parshin.composite.entity.TextComponentType;
 import com.parshin.composite.entity.TextComposite;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class ParagraphParserChain extends AbstractParserChain{
     private static final String PARAGRAPH_REGEX = "(^|\\n)(\\t|\\s{4})";
 
+    public ParagraphParserChain() {
+        nextChain = new SentenceParserChain();
+    }
+
     @Override
     public void parse(TextComponent component, String data) {
-        Pattern pattern = Pattern.compile(PARAGRAPH_REGEX);
-        Matcher matcher = pattern.matcher(data);
+        List<String> paragraphsList = Stream.of(data.split(PARAGRAPH_REGEX))
+                .filter(p -> !p.isEmpty())
+                .toList();
 
-        while (matcher.find()) {
-            String paragraph = matcher.group();
+        for (var paragraph : paragraphsList) {
             TextComponent paragraphComponent = new TextComposite(TextComponentType.PARAGRAPH);
             component.add(paragraphComponent);
 
-            nextChain = new SentenceParserChain();
             nextChain.parse(paragraphComponent, paragraph);
         }
     }
