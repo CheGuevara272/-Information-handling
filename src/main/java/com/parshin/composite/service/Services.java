@@ -33,13 +33,20 @@ public class Services {
                 .collect(Collectors.toList());
     }
 
-    public List<Map.Entry<String, Long>> findDuplicateNumber(TextComposite textComposite) {
+    public String findDuplicateNumber(TextComposite textComposite) {
         ArrayList<String> wordList = getListOfWord(textComposite);
         Map<String, Long> map = wordList.stream()
                 .collect(Collectors.groupingBy(w -> w, Collectors.counting()));
+        Map.Entry<String, Long> maxEntry = null;
 
-        return map.entrySet().stream()
-                .max(Map.Entry.comparingByValue(Comparator.naturalOrder())).stream().toList();
+        for (Map.Entry<String, Long> entry : map.entrySet())
+        {
+            if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0)
+            {
+                maxEntry = entry;
+            }
+        }
+        return String.valueOf(maxEntry);
     }
 
     private ArrayList<String> getListOfWord(TextComposite textComposite) {
