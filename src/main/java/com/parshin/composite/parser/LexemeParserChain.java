@@ -6,8 +6,6 @@ import com.parshin.composite.entity.TextComposite;
 import com.parshin.composite.util.BitOperationCalculator;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LexemeParserChain extends AbstractParserChain{
     private static final String LEXEME_REGEX = "\\s";

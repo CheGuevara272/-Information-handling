@@ -7,10 +7,10 @@ import com.parshin.composite.entity.TextComposite;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Services {
-    private static final Services instance = new Services();
+public class TextService {
+    private static final TextService instance = new TextService();
 
-    public static Services getInstance() {
+    public static TextService getInstance() {
         return instance;
     }
 

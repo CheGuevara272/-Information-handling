@@ -32,17 +32,6 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
-    public String toString() {
-        StringBuilder component = new StringBuilder();
-        component.append(type.getPrefix());
-        for (var part : components) {
-            component.append(part.toString());
-        }
-        component.append(type.getPostfix());
-        return component.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -58,5 +47,16 @@ public class TextComposite implements TextComponent {
         int result = type.hashCode();
         result = 31 * result + components.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder component = new StringBuilder();
+        component.append(type.getPrefix());
+        for (var part : components) {
+            component.append(part.toString());
+        }
+        component.append(type.getPostfix());
+        return component.toString();
     }
 }

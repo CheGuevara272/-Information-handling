@@ -5,8 +5,6 @@ import com.parshin.composite.entity.TextComponentType;
 import com.parshin.composite.entity.TextComposite;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class ParagraphParserChain extends AbstractParserChain{

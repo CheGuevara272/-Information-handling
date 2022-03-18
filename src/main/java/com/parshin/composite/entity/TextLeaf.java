@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
-import java.util.StringJoiner;
 
 public class TextLeaf implements TextComponent{
     private static final Logger log = LogManager.getLogger();

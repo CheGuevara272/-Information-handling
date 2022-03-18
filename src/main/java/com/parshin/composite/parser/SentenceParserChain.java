@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SentenceParserChain extends AbstractParserChain{
-    private static final String SENTENCE_REGEX = "(?Us).*?(?:[?!.](\\s+|$))";
+    private static final String SENTENCE_REGEX = "(?s).*?(?:[?!.](\\n|\\s+|$))";
 
     public SentenceParserChain() {
         nextChain = new LexemeParserChain();
